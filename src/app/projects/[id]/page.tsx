@@ -34,7 +34,7 @@ export default async function Page({ params }: { params: { id: any } }) {
       <div>Các items thuộc project</div>
       {!!projectItems.data.data.length && (
         <div className="grid grid-cols-2 gap-4 mt-4">
-          {projectItems.data.data.map((item) => (
+          {projectItems.data.data.map((item: any) => (
             <div className="p-4 flex-col flex items-center rounded-lg border-1 border-gray-900 bg-slate-400 gap-4 cursor-pointer">
               {item.name}
               <br />
