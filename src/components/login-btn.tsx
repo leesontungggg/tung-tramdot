@@ -95,7 +95,7 @@ export function LoginDialog() {
         </div>
         <DialogFooter>
           <Button type="submit" onClick={handleSubmit(onSubmit)}>
-            Đăng ký
+            Đăng nhập
           </Button>
           <Button type="submit" onClick={() => setOpen(false)}>
             Hủy
