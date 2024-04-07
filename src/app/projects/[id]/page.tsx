@@ -3,6 +3,7 @@ import {
   handleGetProjectItems,
 } from "@/services/project";
 import PreviewRenderer from "@/components/PreviewRenderer";
+import { formatMoney } from "@/lib/utils";
 
 export default async function Page({ params }: { params: { id: any } }) {
   const projectDetail: any = await handleGetProjectDetail(params.id);
@@ -16,10 +17,13 @@ export default async function Page({ params }: { params: { id: any } }) {
         Project Short description: {projectDetail.data.data.short_description}
       </div>
       <br />
-      <div>Project Goal: {projectDetail.data.data.donate_goal}</div>
+      <div>
+        Project Goal: {`${formatMoney(projectDetail.data.data.donate_goal)}đ`}
+      </div>
       <br />
       <div>
-        Project Current Donation: {projectDetail.data.data.current_donate}
+        Project Current Donation:{" "}
+        {`${formatMoney(projectDetail.data.data.current_donate)}đ`}
       </div>
       <br />
       <div>Project End Date: {projectDetail.data.data.end_date}</div>
@@ -29,19 +33,19 @@ export default async function Page({ params }: { params: { id: any } }) {
       <br />
       <div>Các items thuộc project</div>
       {!!projectItems.data.data.length && (
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-4 mt-4">
           {projectItems.data.data.map((item) => (
-            <div className="p-4 flex-col flex items-center rounded-lg border-1 border-gray-900 bg-slate-400">
+            <div className="p-4 flex-col flex items-center rounded-lg border-1 border-gray-900 bg-slate-400 gap-4 cursor-pointer">
               {item.name}
               <br />
               {item.short_desc}
               <br />
               <img
-                className="w-40 h-auto"
+                className="w-40 h-auto flex-1"
                 src={`https://tramdot.up.railway.app/assets/${item.thumbnail}.jpg`}
               />
               <br />
-              {`${item.price} đ`}
+              {`${formatMoney(item.price)} đ`}
             </div>
           ))}
         </div>
